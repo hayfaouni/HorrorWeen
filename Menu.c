@@ -1,9 +1,14 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include "SDL/SDL.h"
-#include "SDL/SDL_image.h"
-#include "SDL/SDL_mixer.h"
-#include "SDL/SDL_ttf.h" 
+#include <SDL/SDL.h>
+#include <SDL/SDL_image.h>
+#include <SDL/SDL_mixer.h>
+#include <SDL/SDL_ttf.h>
+#include "personnage.h"
+#include "initialiser.h"
+#include "collision.h"
+#include "deplacement.h"
+#include "game.h"
 
  typedef struct input
 
@@ -110,7 +115,7 @@ int main(int argc, char *argv[])
 
   SDL_Init(SDL_INIT_VIDEO);
 
-  ecran = SDL_SetVideoMode(1920,1080, 32, SDL_HWSURFACE);
+  ecran = SDL_SetVideoMode(1800,700, 32, SDL_HWSURFACE);
 
   background=IMG_Load("Menu.png");
   play=IMG_Load("play.png");
@@ -161,6 +166,9 @@ int main(int argc, char *argv[])
         {
           //click on play
           verif=1;
+            Mix_FreeMusic(music); 
+            Mix_CloseAudio(); 
+          jouer(ecran);
         }
       }
    // boutton settings   
